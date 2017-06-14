@@ -15,7 +15,13 @@ class FunkyBot:
 
     @event(rfc.PRIVMSG)
     def admin_answer(self, mask, target, data, **kwargs):
-        if data.startswith('FunkyBot:'):
+        if 'https://pastebin.com' in data:
+            self.bot.privmsg(
+                target,
+                '{}: Please use dpaste.de for all your paste bin needs'.format(IrcString(mask).nick)
+            )
+
+        elif data.startswith('FunkyBot:'):
             message = re.sub(r'^FunkyBot: *', '', data)
 
             doc_match = re.search(r'^doc +(\w+)', message)
