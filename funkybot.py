@@ -21,6 +21,12 @@ class FunkyBot:
                 '{}: Please use dpaste.de for all your paste bin needs'.format(IrcString(mask).nick)
             )
 
+        elif 'there are 2 hard things in computer science' in data.lower():
+            self.bot.privmsg(
+                target,
+                '{}: Cache invalidation, naming things and off by 1 errors'.format(IrcString(mask).nick)
+            )
+
         elif data.startswith('FunkyBot:'):
             message = re.sub(r'^FunkyBot: *', '', data)
 
@@ -36,4 +42,10 @@ class FunkyBot:
                 self.bot.privmsg(
                     target,
                     '{}: Admin is no substitute for a proper management / back-office interface'.format(IrcString(mask).nick),
+                )
+
+            elif 'What are the 3 rules of optimisation?' in message:
+                self.bot.privmsg(
+                    target,
+                    '{}: 1. Don\'t!  2. Not yet!  3. Profile!'.format(IrcString(mask).nick),
                 )
