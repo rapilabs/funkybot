@@ -1,3 +1,4 @@
+import random
 import re
 
 from irc3 import event, plugin, rfc
@@ -6,6 +7,12 @@ from irc3.utils import IrcString
 
 def slugify(input_str):
     return input_str.lower().replace('_', '-')
+
+
+admin_quotes = (
+    'Admin should be kept away from as many people as possible',
+    'Admin is no substitute for a proper management / back-office interface',
+)
 
 
 @plugin
@@ -41,7 +48,7 @@ class FunkyBot:
             elif re.search(r'admin.*\?', message, re.IGNORECASE):
                 self.bot.privmsg(
                     target,
-                    '{}: Admin is no substitute for a proper management / back-office interface'.format(IrcString(mask).nick),
+                    '{}: {}'.format(IrcString(mask).nick, random.choice(admin_quotes)),
                 )
 
             elif 'What are the 3 rules of optimisation?' in message:
